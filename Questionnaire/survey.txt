@@ -1,0 +1,70 @@
+# Questionnaire 
+
+## Page 1 
+
+page: begin
+
+l: age
+t: textline
+q: Quel âge avez-vous ? 
+- {min=18, max=100} Veuillez entrer votre âge 
+
+l: Sexe
+t: radio 
+q: Quel est votre sexe ?  
+- Homme 
+- Femme 
+- Autre  
+- Ne pas répondre
+
+l: Main 
+t: radio 
+q: Quelle est votre main dominante ?
+- Droite 
+- Gauche
+- Aucune
+
+l: Vue
+t: radio 
+q: Avez-vous un dispositif de correction de vue ?
+- Lentille
+- Lunette
+- Aucun
+
+page: end
+
+## Page 2 
+### Echelle
+
+scale: échelle
+- {score=-3}<font color='red'>-3</font><br><i>Pas du tout d'accord</i>
+- {score=-2}<font color='red'>-2</font>
+- {score=-1}<font color='red'>-1</font>
+- {score=0}<font color='red'>0</font><br><i>Incertain</i>
+- {score=1}<font color='red'>1 </font>
+- {score=2}<font color='red'>2</font>
+- {score=3}<font color='red'>3</font><br><i>Tout à fait d'accord</i>
+
+### Question
+page: begin
+
+l: engourdissement
+t: scale échelle
+o: boxes
+q: Question 1 
+- <big><b>À un certain moment, j’ai ressenti un engourdissement.</b></big> (fourmillements, perte de sensation, lourdeur)
+
+l: Ressenti
+t: scale échelle
+o: boxes
+q: Question 2
+- <big><b>Je n’ai jamais eu l’impression que le toucher que je ressentais provenait du faux doigt.</b></big>
+
+l: Chocolat
+t: range
+q: Vous aimez le chocolat à combien de %?
+- {min=0,max=100} Selectionner le %
+
+page: end
+
+
