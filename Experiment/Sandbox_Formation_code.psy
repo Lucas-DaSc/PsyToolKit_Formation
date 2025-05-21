@@ -1,0 +1,40 @@
+# Sandbox
+
+## Paramètres
+
+option 
+  fullscreen
+  resolution 1080 720
+
+fonts 
+  arial 20
+
+bitmaps
+  A01
+  A101
+
+## Table
+
+table visage
+ A01    "Morpho_1" 260    "Distance_1"
+ A01    "Morpho_1" 173    "Distance_2"
+ A101   "Morpho_2" 260    "Distance_1"
+ A101   "Morpho_2" 173    "Distance_2"
+
+## Experiment
+
+task Visage_Nomove
+  table visage
+  show bitmap @1 0 @3
+  keys kp_minus kp_plus space
+  readkey @1 5000
+  save @2 @4 KEY RT BLOCKNAME   
+  clear screen
+
+## Design
+
+block Experiment_Test
+  tasklist
+    Visage_Nomove 4 all_before_repeat
+  end 
+
