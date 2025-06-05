@@ -1,0 +1,444 @@
+### Passif (Outil/Main) / Actif (Outil/Main)
+
+
+# Paramètres
+
+option 
+  fullscreen
+  resolution 1080 720
+
+fonts 
+  arial 20
+
+bitmaps
+ Distance_1
+ Distance_2
+ Distance_3
+ Distance_4
+ Distance_5
+ Distance_6
+ Distance_7
+ Distance_8
+ Distance_9
+ Distance_10
+ Distance_Intro
+ Pause
+ Croix
+ Entrainement
+ Main
+ Baton
+ Principale
+ Mouvement  
+ References
+ Variation
+ New_Task
+ Nomove
+ GO
+ Reach
+ Message_Reach
+
+table outil  
+ Distance_2  "Move" "Outil" 1
+ Distance_3  "Move" "Outil" 2
+ Distance_4  "Move" "Outil" 3
+ Distance_5  "Move" "Outil" 4
+ Distance_6  "Move" "Outil" 5
+ Distance_7  "Move" "Outil" 6
+ Distance_8  "Move" "Outil" 7
+ Distance_9  "Move" "Outil" 8
+
+table main
+ Distance_2 "Move" "Main" 1 
+ Distance_3 "Move" "Main" 2
+ Distance_4 "Move" "Main" 3
+ Distance_5 "Move" "Main" 4
+ Distance_6 "Move" "Main" 5
+ Distance_7 "Move" "Main" 6
+ Distance_8 "Move" "Main" 7
+ Distance_9 "Move" "Main" 8
+
+table nomove_main
+ Distance_2  "Nomove" 1 "Main" 
+ Distance_3  "Nomove" 2 "Main"
+ Distance_4  "Nomove" 3 "Main" 
+ Distance_5  "Nomove" 4 "Main" 
+ Distance_6  "Nomove" 5 "Main" 
+ Distance_7  "Nomove" 6 "Main" 
+ Distance_8  "Nomove" 7 "Main" 
+ Distance_9  "Nomove" 8 "Main" 
+
+table nomove_outil
+ Distance_2  "Nomove" 1 "Outil"
+ Distance_3  "Nomove" 2 "Outil"
+ Distance_4  "Nomove" 3 "Outil"
+ Distance_5  "Nomove" 4 "Outil" 
+ Distance_6  "Nomove" 5 "Outil" 
+ Distance_7  "Nomove" 6 "Outil"
+ Distance_8  "Nomove" 7 "Outil"
+ Distance_9  "Nomove" 8 "Outil"
+
+### Motor Phase
+
+task motor
+  set $x random -450 450 25
+  set $y random -335 335 20
+  show circle $x $y 20 red
+  delay 1250
+
+
+### Tutoriel
+
+task training 
+  keys kp_minus kp_plus
+  draw off
+   show bitmap Distance_1
+   show text "Ceci est une distance COURTE" -300 0
+   show text "Appuyez sur la touche -"      300  0
+  draw on
+  text color white
+  readkey 1 100000
+  clear screen
+  delay 500
+  draw off
+   show bitmap Distance_10
+   show text "Ceci est une distance LONGUE" -300 0
+   show text "Appuyez sur la touche +"      300  0
+  draw on
+  text color white
+  readkey 1 100000
+  clear screen
+  delay 500
+  
+table training
+ Distance_1  "Outil" 1
+ Distance_10 "Outil" 2
+ Distance_1  "Main"  1
+ Distance_10 "Main"  2
+
+task more
+  table training
+  draw off
+    show bitmap @1 0 0
+  draw on
+  keys kp_minus kp_plus
+  readkey @3 5000
+  clear screen
+  if STATUS == CORRECT 
+    show text "BIEN" 0 0
+  fi 
+  if STATUS == WRONG
+    show text "ERREUR" 0 0
+  fi
+  delay 500
+  clear screen  
+
+# Variation
+
+task var
+  table main
+  draw off
+    show bitmap @1 0 0 
+  draw on
+  keys kp_minus kp_plus space
+  readkey @1 5000
+  clear screen
+  show rectangle 0 0 2000 2000 grey
+  delay 400
+  clear screen
+
+
+### Mouvement 
+
+task move
+  table outil
+  draw off
+    show bitmap @1 0 0 
+  draw on
+  keys kp_minus kp_plus space
+  readkey @1 5000
+  clear screen
+  show bitmap GO
+  delay 400
+  clear -1
+  draw off
+    show bitmap @1 0 0
+  draw on
+  delay 2000
+  clear screen
+  show rectangle 0 0 2000 2000 grey
+  delay 400
+  clear screen
+
+### Expérience
+
+task outil
+  table outil
+  draw off
+    show bitmap @1 0 0 
+  draw on
+  keys kp_minus kp_plus space
+  readkey @1 5000
+  save @1 @2 @3 @4 KEY RT BLOCKNAME 
+  clear screen
+  show bitmap GO
+  delay 400
+  clear -1
+  draw off
+    show bitmap @1 0 0
+  draw on
+  delay 2000
+  clear screen
+  show rectangle 0 0 2000 2000 grey
+  delay 400
+  clear screen
+
+task main
+  table main
+  draw off
+    show bitmap @1 0 0 
+  draw on
+  keys kp_minus kp_plus space
+  readkey @1 5000
+  save @1 @2 @3 @4 KEY RT BLOCKNAME 
+  clear screen
+  show bitmap GO
+  delay 400
+  clear -1
+  draw off
+    show bitmap @1 0 0
+  draw on
+  delay 2000
+  clear screen
+  show rectangle 0 0 2000 2000 grey
+  delay 400
+  clear screen
+
+task nomove_main
+  table nomove_main
+  draw off
+    show bitmap @1 0 0 
+  draw on
+  keys kp_minus kp_plus space
+  readkey @1 5000
+  save @1 @2 @4 @3 KEY RT BLOCKNAME 
+  clear screen
+  show rectangle 0 0 2000 2000 grey
+  delay 400
+  clear screen
+
+task nomove_outil
+  table nomove_outil
+  draw off
+    show bitmap @1 0 0 
+  draw on
+  keys kp_minus kp_plus space
+  readkey @1 5000
+  save @1 @2 @4 @3 KEY RT BLOCKNAME 
+  clear screen
+  show rectangle 0 0 2000 2000 grey
+  delay 400
+  clear screen
+
+### Reach
+
+# Reach 
+
+task reach
+  show bitmap Reach 0 0
+  text color white
+  readkeys option size 2
+  readkeys option show 200 200
+  readkeys 1 1000000
+  save "Distance" "All" "Reach" "Condition" WORD RT BLOCKNAME
+  clear screen
+  show rectangle 0 0 2000 2000 grey
+  delay 500
+  clear screen
+
+
+### Bloc Nomove
+
+block motor
+  message Entrainement
+  delay 100
+  tasklist
+    motor 150
+  end
+
+block ref
+   message References
+   delay 100
+   tasklist 
+     training 1
+   end
+
+block more 
+   tasklist 
+     more 6
+   end
+
+block variation
+   message Variation
+   delay 100
+   tasklist
+     var 8
+   end
+
+block CD_1
+  message Nomove
+  message Baton
+  delay 100
+  tasklist
+    nomove_outil 32 all_before_repeat
+  end
+
+block CD_2
+  message Main
+  delay 100
+  tasklist
+    nomove_main 32 all_before_repeat
+  end
+
+block CD_3
+  message Baton
+  delay 100
+  tasklist
+    nomove_outil 32 all_before_repeat
+  end
+
+block CD_4
+  message Main
+  delay 100
+  tasklist
+    nomove_main 32 all_before_repeat
+  end
+
+block Pause_1
+  message Pause
+  delay 100
+
+block CD_5
+  message Baton
+  delay 100
+  tasklist
+    nomove_outil 32 all_before_repeat
+  end
+
+block CD_6
+  message Main
+  delay 100
+  tasklist
+    nomove_main 32 all_before_repeat
+  end
+
+block CD_7
+  message Baton
+  delay 100
+  tasklist
+    nomove_outil 32 all_before_repeat
+  end
+
+block CD_8
+ message Main
+  delay 100
+  tasklist
+    nomove_main 32 all_before_repeat
+  end
+
+### Bloc Movet
+
+block Pause_2
+  message Pause
+  delay 100
+
+block move_main  
+  message Mouvement 
+  message Main
+  tasklist 
+    move 5 all_before_repeat
+  end
+
+block move_baton
+  message Baton
+  tasklist 
+    move 5 all_before_repeat
+  end
+
+block CD_9
+  message Principale
+  message Baton
+  delay 100
+  tasklist 
+    outil 32 all_before_repeat 
+  end 
+
+block CD_10
+  message Main
+  delay 100
+  tasklist 
+    main 32 all_before_repeat 
+  end 
+
+block CD_11
+  message Baton
+  delay 100
+  tasklist 
+    outil 32 all_before_repeat 
+  end  
+
+block CD_12
+  message Main
+  delay 100
+  tasklist 
+    main 32 all_before_repeat 
+  end  
+
+block Pause_3
+  message Pause
+  delay 100
+
+block CD_13
+  message Baton
+  delay 100
+  tasklist 
+    outil 32 all_before_repeat 
+  end  
+
+block CD_14
+  message Main
+  delay 100
+  tasklist 
+    main 32 all_before_repeat 
+  end  
+
+block CD_15
+  message Baton
+  delay 100
+  tasklist 
+    outil 32 all_before_repeat 
+  end  
+
+block CD_16
+  message Main
+  delay 100
+  tasklist 
+    main 32 all_before_repeat 
+  end  
+
+
+### Reach
+
+block reach_main
+  message Message_Reach
+  message Main
+  delay 1
+  tasklist 
+    reach 1
+  end
+
+block reach_baton
+  message Baton
+  delay 1
+  tasklist 
+    reach 1
+  end
